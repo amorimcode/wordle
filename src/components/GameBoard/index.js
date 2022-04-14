@@ -1,26 +1,32 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-function insertLetter(letter) {
-  var div = document.getElementById("row-1");
-  var letters = div.getElementsByClassName("letter-box");
-  var lettersArray = [];
-  for (var i = 0; i < letters.length; i += 1) {
-    lettersArray.push(letters[i].innerHTML);
-    letters[i].innerHTML = letter;
-    console.log(letters[i]);
-  }
-
-  console.log(lettersArray);
-}
 
 export default function GameBoard() {
+  const [guessWord, setGuessWord] = useState('');
+
+
+  function insertLetter(letter) {
+    var div = document.getElementById("row-1");
+    var letters = div.getElementsByClassName("letter-box");
+    for (var i = 0; letters.length; i++) {
+
+      if (letters[i].innerHTML === '') {
+        letters[i].innerHTML = letter
+        setGuessWord(guessWord + letter)
+        return
+      }
+
+      console.log(guessWord)
+    }
+
+  }
+
   useEffect(() => {
     document.addEventListener("keydown", (e) => {
       let pressedKey = String(e.key);
       let found = pressedKey.match(/[a-z]/gi);
       insertLetter(found);
     });
-
 
   });
 
