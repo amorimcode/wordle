@@ -1,11 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import './App.scss';
+
+import Keyboard from './components/Keyboard'
+import GameBoard from './components/GameBoard';
+
+const handleInsertLetter = (letter) => {
+  
+}
 
 function App() {
+
   return (
-    <div>
-      Hello world
-    </div>
+    <>
+      <h1>Wordle</h1>
+      <GameBoard />
+      <Keyboard />
+    </>
+
   );
 }
 
