@@ -22,36 +22,92 @@ async function handleCheckWord(guessWord, currentGuess) {
   const res = await axios.post("http://localhost:3001/checkWord", {
     guessWord: guessWord,
   });
-  
-  console.log(res)
-
 
   for (let [idx, color] of res.data.entries()) {
     var div = document.querySelector(`#row-${currentGuess} .letter-box-${idx}`);
-    div.style.backgroundColor = color
+    div.style.backgroundColor = color;
   }
-
 }
 
 function App() {
-  const [guessWord, setGuessWord] = useState([]);
-  const [currentGuess, setCurrentGuess] = useState(1);
-  
-  document.addEventListener("keydown", (event) => {
+  const [guessWord0, setGuessWord0] = useState([]);
+  const [guessWord1, setGuessWord1] = useState([]);
+  const [guessWord2, setGuessWord2] = useState([]);
+  const [guessWord3, setGuessWord3] = useState([]);
+  const [guessWord4, setGuessWord4] = useState([]);
+  const [guessWord5, setGuessWord5] = useState([]);
+  const [currentGuess, setCurrentGuess] = useState(0);
+
+  document.addEventListener("keypress", (event) => {
     if (event.key === "Backspace") {
-      if (guessWord.length >= 1) {
-        const updateGuessWordArray = guessWord.slice(0, -1);
+      if (guessWord0.length >= 1 && currentGuess === 0) {
+        let updateGuessWordArray0 = guessWord0.slice(0, -1);
 
-        setGuessWord(updateGuessWordArray);
+        setGuessWord0(updateGuessWordArray0);
       }
-    } else if (event.key === "Enter") {
-      handleCheckWord(guessWord, currentGuess);
+      if (guessWord1.length >= 1 && currentGuess === 1) {
+        let updateGuessWordArray1 = guessWord1.slice(0, -1);
 
-    } else if (lettersOnly(event) && event.key.length === 1) {
-      if (guessWord.length < 5) {
-        const updateGuessWordArray = [...guessWord, event.key];
+        setGuessWord1(updateGuessWordArray1);
+      }
+    }
+    if (event.key === "Enter") {
+      switch (currentGuess) {
+        case 0:
+          handleCheckWord(guessWord0, currentGuess);
+          break;
+        case 1:
+          handleCheckWord(guessWord1, currentGuess);
+          break;
+        case 2:
+          handleCheckWord(guessWord2, currentGuess);
+          break;
+        case 3:
+          handleCheckWord(guessWord3, currentGuess);
+          break;
+        case 4:
+          handleCheckWord(guessWord4, currentGuess);
+          break;
+        case 5:
+          handleCheckWord(guessWord5, currentGuess);
+          break;
 
-        setGuessWord(updateGuessWordArray);
+        default:
+          break;
+      }
+
+      setCurrentGuess(currentGuess + 1);
+    }
+    if (lettersOnly(event) && event.key.length === 1) {
+      let updateGuessWordArray = [];
+
+      switch (currentGuess) {
+        case 0:
+          updateGuessWordArray = [...guessWord0, event.key];
+          setGuessWord0(updateGuessWordArray);
+          break;
+        case 1:
+          updateGuessWordArray = [...guessWord1, event.key];
+          setGuessWord1(updateGuessWordArray);
+          break;
+        case 2:
+          updateGuessWordArray = [...guessWord2, event.key];
+          setGuessWord2(updateGuessWordArray);
+          break;
+        case 3:
+          updateGuessWordArray = [...guessWord3, event.key];
+          setGuessWord3(updateGuessWordArray);
+          break;
+        case 4:
+          updateGuessWordArray = [...guessWord4, event.key];
+          setGuessWord4(updateGuessWordArray);
+          break;
+        case 5:
+          updateGuessWordArray = [...guessWord5, event.key];
+          setGuessWord4(updateGuessWordArray);
+          break;
+        default:
+          break;
       }
     }
   });
@@ -59,7 +115,15 @@ function App() {
   return (
     <>
       <h1>Wordle</h1>
-      <GameBoard guessWord={guessWord} />
+      <GameBoard
+        guessWord0={guessWord0}
+        guessWord1={guessWord1}
+        guessWord2={guessWord2}
+        guessWord3={guessWord3}
+        guessWord4={guessWord4}
+        guessWord5={guessWord5}
+        currentGuess={currentGuess}
+      />
       <Keyboard />
     </>
   );
