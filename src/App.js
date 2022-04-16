@@ -16,28 +16,27 @@ function lettersOnly(event) {
   else return false;
 }
 
+function handleCheckWord(word) {}
+
 function App() {
   const [guessWord, setGuessWord] = useState([]);
   const [word, setWord] = useState("");
 
   document.addEventListener("keydown", (event) => {
-    
-    if (event.key === 'Backspace') {
-      const updateGuessWordArray = guessWord.slice(0, -1);;
+    if (event.key === "Backspace") {
+      if (guessWord.length >= 1) {
+        const updateGuessWordArray = guessWord.slice(0, -1);
 
-      console.log(guessWord)
-      setGuessWord(updateGuessWordArray);
-    }
-
-    if (lettersOnly(event) && event.key.length === 1) {
-      
+        setGuessWord(updateGuessWordArray);
+      }
+    } else if (event.key === "Enter") {
+      console.log(guessWord);
+    } else if (lettersOnly(event) && event.key.length === 1) {
       if (guessWord.length < 5) {
         const updateGuessWordArray = [...guessWord, event.key];
 
         setGuessWord(updateGuessWordArray);
       }
-
-      console.log(guessWord);
     }
   });
 
