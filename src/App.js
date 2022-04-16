@@ -45,6 +45,11 @@ function App() {
       <h1>Wordle</h1>
       <GameBoard guessWord={guessWord} />
       <Keyboard />
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6387547474313043"
+        crossorigin="anonymous"
+      ></script>
     </>
   );
 }
