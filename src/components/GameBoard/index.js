@@ -5,7 +5,6 @@ export default function GameBoard({
   guessWord3,
   guessWord4,
   guessWord5,
-  currentGuess,
 }) {
   return (
     <div id="game-board">
