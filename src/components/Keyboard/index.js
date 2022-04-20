@@ -8,7 +8,7 @@ export default function Keyboard() {
   return (
     <div id="keyboard">
       <Row className="row-1">
-        <button className="button" onClick>q</button>
+        <button className="button">q</button>
         <button className="button">w</button>
         <button className="button">e</button>
         <button className="button">r</button>
