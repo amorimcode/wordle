@@ -20,7 +20,7 @@ function lettersOnly(event) {
 
 async function handleCheckWord(guessWord, currentGuess) {
   
-  const res = await axios.post("http://wordleapibr.herokuapp.com/checkWord", {
+  const res = await axios.post("http://localhost:3001/checkWord", {
     guessWord: guessWord,
   })
 
@@ -32,6 +32,11 @@ async function handleCheckWord(guessWord, currentGuess) {
     );
     div.style.backgroundColor = color;
   }
+
+  if(JSON.stringify(["green","green","green","green","green"]) == JSON.stringify(res.data)){
+    alert("Parabéns, você acertou!")
+}
+
 }
 
 function App() {
@@ -118,6 +123,10 @@ function App() {
       }
     });
   });
+
+  function pressbutton(value) {
+    console.log(value)
+  }
 
   return (
     <>
