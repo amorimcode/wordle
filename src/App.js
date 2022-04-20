@@ -20,7 +20,7 @@ function lettersOnly(event) {
 
 async function handleCheckWord(guessWord, currentGuess) {
   
-  const res = await axios.post("http://wordleapibr.herokuapp.com/checkWord", {
+  const res = await axios.post("https://wordleapibr.herokuapp.com/checkWord", {
     guessWord: guessWord,
   })
 
